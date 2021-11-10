@@ -10,6 +10,12 @@ export const dataProcessingAboutSalary = (f, s) => {
  return "It's false!"
 };
 
+export const calculateCashback = (isCashback, sum, cb) => {
+  if (isCashback&&!(isCashback==="false")){
+    return Math.round(sum*parseFloat(cb))/100
+  } else return "No casnback"
+};
+
 export const getHolidayPrizes = (fio, date, sum) => {
   let today = new Date();
  let dateBirth= new Date(Date.parse(date)) ;
