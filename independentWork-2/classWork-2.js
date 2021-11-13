@@ -36,7 +36,9 @@ export const getWomenName = (data) => {
 // Вывод: "Самого младшего пользователя зовут {...} и ему ${age}.
 // Самого старшего пользователя зовут {...} и ему ${age}."
 export const getMinMaxUserAge = (data) => {
-
+const sortedData = data.sort((a,b)=>a.age-b.age);
+return `Самого младшего пользователя зовут ${sortedData[0].name} и ему ${sortedData[0].age}
+Самого старшего пользователя зовут ${sortedData[sortedData.length-1].name} и ему ${sortedData[sortedData.length-1].age}`
 };
 
 // TODO: Вывести кол-во пользователей, играющих в баскетбол
