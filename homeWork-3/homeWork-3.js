@@ -65,8 +65,7 @@ export const repeatOrder = (cartData, date) => {
     const clone = Object.assign({},order)
    clone.date=new Date();
    clone.id=`${maxId++}`;
-   cartData.push(clone); 
-   // вставляю в конец списка, т.к. падает вывод "cartData[0].addedIngredients?.[0].count"
+   cartData.unshift(clone);
   }
   return cartData;
 };
