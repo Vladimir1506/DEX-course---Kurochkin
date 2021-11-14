@@ -84,8 +84,6 @@ export const checkPromo = (cartData) => {
 const total = cartData.reduce((sum,cur)=>sum+cur.price,0);
 const oneBigPosition = cartData.find(i=>i.price>500);
 const notDiscounted = cartData.find(i=>'discount' in i);
-console.log(cartData)
-console.log(!!notDiscounted)
   return {
     total: total>1000,
     oneBigPosition: !!oneBigPosition,
