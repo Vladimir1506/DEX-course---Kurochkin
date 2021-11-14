@@ -4,7 +4,7 @@ export const processCartData = (cartData) => {
   cartData.map(item=>{
     const disc = item.oldPrice-item.price;
     (disc>0)&&(item.discount=disc);
-    delete item.oldPrice;
+   return delete item.oldPrice;
   });
   return cartData;
 };
@@ -12,8 +12,20 @@ export const processCartData = (cartData) => {
 export const makeCartItemCopy = (cartItem) => {
   //TODO: сделать копию элемента "Пицца с анчоусами"
   // После увеличить кол-во добавленного ингредиента
+
+  function deepClone(obj){
+    let clone={};
+    for (let prop in obj){
+      if(typeof obj[prop]==='object'){
+        clone[prop]=deepClone(obj[prop]);
+      } else
+      clone[prop]=obj[prop];
+    }
+    return clone;
+  }
+
 const foundItem = cartItem.find(item=>item.name==='Пицца с анчоусами');
-const clone = Object.assign({},foundItem);
+const clone = deepClone(foundItem);
 clone.addedIngredients[0].count+=1;
 cartItem.push(clone);
 return clone;
