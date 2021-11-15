@@ -32,7 +32,6 @@ const foundItem = cartItem.find(item=>item.name==='Пицца с анчоуса�
 const clone = deepClone(foundItem);
 clone.id=`${getNewId(cartItem)}`;
 clone.addedIngredients[0].count+=1;
-clone.count+=1;
 cartItem.push(clone);
 return clone;
 };
