@@ -82,6 +82,7 @@ export const repeatOrder = (cartData, date) => {
   let maxId = cartData.reduce((max,cur)=>Math.max(max,cur.id),0);
   for(let order of orders ){
     const clone = Object.assign({},order)
+    //let date = 
     clone.date=new Date().toISOString();
     clone.id=`${++maxId}`;
     cartData.unshift(clone);
@@ -102,11 +103,11 @@ export const checkPromo = (cartData) => {
   // что есть пункт больше чем на 500р
   // что нет скидочных товаров
 const total = cartData.reduce((sum,cur)=>sum+cur.price,0);
-const oneBigPosition = cartData.find(i=>i.price>500);
-const notDiscounted = cartData.find(i=>'discount' in i);
+const oneBigPosition = cartData.find(i=>(i.price*i.count)>500);
+const discounted = cartData.find(i=>'discount' in i);
   return {
     total: total>1000,
-    oneBigPosition: !!oneBigPosition,
-    notDiscounted: !notDiscounted
+    oneBigPosition: oneBigPosition,
+    notDiscounted: discounted
   };
 };
