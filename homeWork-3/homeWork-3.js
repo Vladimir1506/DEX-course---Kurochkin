@@ -24,9 +24,15 @@ export const makeCartItemCopy = (cartItem) => {
     return clone;
   }
 
+  function getNewId(arr){
+    return cartItem.reduce((max,cur)=>Math.max(max,cur.id),0)+1;
+  }
+
 const foundItem = cartItem.find(item=>item.name==='Пицца с анчоусами');
 const clone = deepClone(foundItem);
+clone.id=`${getNewId(cartItem)}`;
 clone.addedIngredients[0].count+=1;
+clone.count+=1;
 cartItem.push(clone);
 return clone;
 };
@@ -62,7 +68,8 @@ export const calcSum = (cartData) => {
 
 export const getCartItemsByDate = (cartData, date) => {
   //TODO: выбрать покупки сделанные за выбранную дату
- return cartData.filter(i=>Date.parse(i.date)===Date.parse(date));
+  const filteredOrders = cartData.filter(i=>Date.parse(i.date)===Date.parse(date));
+ return filteredOrders.length?filteredOrders:cartData;
 };
 
 export const repeatOrder = (cartData, date) => {
@@ -75,10 +82,12 @@ export const repeatOrder = (cartData, date) => {
   let maxId = cartData.reduce((max,cur)=>Math.max(max,cur.id),0);
   for(let order of orders ){
     const clone = Object.assign({},order)
-   clone.date=new Date();
-   clone.id=`${maxId++}`;
-   cartData.unshift(clone);
+    //let date = 
+    clone.date=new Date().toISOString();
+    clone.id=`${++maxId}`;
+    cartData.unshift(clone);
   }
+
   return cartData;
 };
 
