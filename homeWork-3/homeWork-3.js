@@ -82,7 +82,6 @@ export const repeatOrder = (cartData, date) => {
   let maxId = cartData.reduce((max,cur)=>Math.max(max,cur.id),0);
   for(let order of orders ){
     const clone = Object.assign({},order)
-    //let date = 
     clone.date=new Date().toISOString();
     clone.id=`${++maxId}`;
     cartData.unshift(clone);
