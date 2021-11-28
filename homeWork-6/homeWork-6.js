@@ -39,13 +39,17 @@ export class Drive {
 // (>100%) или при слишком интенсивной зарадке (импульс заряда должен
 // быть не чаще чем 1раз в 0,5сек).
 export class Charger {
-
+  сhargingLock = {}
   chargeVehicle(vehicle) {
-    if (vehicle instanceof ElectricCar)
-      if (vehicle.battery < 100)
-        setTimeout(() =>
-          vehicle.charge()
-          , 500)
+    if ((vehicle instanceof ElectricCar)
+      && (vehicle.battery < 100)
+      && (!this.сhargingLock[vehicle.id])) {
+      this.сhargingLock[vehicle.id] = true
+      setTimeout(() => {
+        vehicle.charge()
+        this.сhargingLock[vehicle.id] = false
+      }, 500)
+    }
   }
 }
 
