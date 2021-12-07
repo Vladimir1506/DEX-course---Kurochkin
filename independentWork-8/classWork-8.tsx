@@ -46,7 +46,7 @@ class ComponentWithChild extends React.Component {
 
 class ComponentWithRenders extends React.Component<{
   func: React.FC
-  comp: React.ComponentClass
+  comp: React.ComponentType
 }>{
   render() {
     return (<div>
