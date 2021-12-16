@@ -1,0 +1,25 @@
+.App {
+  font-family: sans-serif;
+  text-align: start;
+  color: green;
+  width: 100vw;
+  height: 100vh;
+  font-weight: 700;
+  font-size: 18px;
+}
+body {
+  margin: 0;
+  background-color: black;
+}
+.input {
+  background-color: black;
+  border-color: black;
+  outline: none;
+  color: inherit;
+  font-weight: 700;
+  font-size: 18px;
+}
+.ddd{
+  background-color: white,
+
+}
